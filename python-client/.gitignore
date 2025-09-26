@@ -1,0 +1,45 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+
+# Poetry / virtualenv
+.venv/
+poetry.lock
+
+# Unit test / coverage reports
+.coverage
+htmlcov/
+.tox/
+.nox/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDEs / editors
+.vscode/
+.idea/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Env files (API keys, secrets)
+.env
+*.env
+
+# Logs
+*.log
+logs/
