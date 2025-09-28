@@ -15,7 +15,6 @@ dist/
 
 # Poetry / virtualenv
 .venv/
-poetry.lock
 
 # Unit test / coverage reports
 .coverage
