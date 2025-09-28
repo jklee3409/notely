@@ -2,8 +2,7 @@ name: Build Python Client
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
     paths:
       - 'python-client/**'
       - '.github/workflows/python-build.yml'
@@ -30,20 +29,25 @@ jobs:
         run: pip install poetry==2.2.1
 
       - name: Install deps
-        run: poetry install
+        run: poetry install --no-interaction --no-ansi
         working-directory: ./python-client
 
       - name: Show tree (debug)
         run: ls -R
         working-directory: ./python-client
 
-      - name: Verify entry
+      - name: Verify entry/spec
         run: |
           test -f python_client/__main__.py || { echo "Entry script not found"; exit 1; }
+          test -f notely-stt.spec || { echo "Spec file not found"; exit 1; }
         working-directory: ./python-client
 
-      - name: Build exe
-        run: poetry run pyinstaller --onefile -n notely-stt python_client/__main__.py
+      - name: Build exe with spec
+        run: poetry run pyinstaller --noconfirm notely-stt.spec
+        working-directory: ./python-client
+
+      - name: Smoke test
+        run: ./dist/notely-stt.exe --help || true
         working-directory: ./python-client
 
       - name: Upload artifact
