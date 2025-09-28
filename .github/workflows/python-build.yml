@@ -36,7 +36,7 @@ jobs:
         working-directory: ./python-client
 
       - name: Package with PyInstaller
-        run: poetry run pyinstaller --onefile main.py
+        run: poetry run pyinstaller --onefile __main__.py
         working-directory: ./python-client/python_client
 
       - name: Upload artifact
