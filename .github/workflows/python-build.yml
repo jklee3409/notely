@@ -9,6 +9,10 @@ on:
       - 'python-build.yml'
   workflow_dispatch:
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   build-windows:
     runs-on: windows-latest
