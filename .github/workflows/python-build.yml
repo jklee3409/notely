@@ -1,0 +1,39 @@
+name: Build Python Client
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'python-client/**'
+      - 'python-build.yml'
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python and Poetry
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          poetry-version: '1.8.2'
+          cache: 'poetry'
+
+      - name: Install dependencies
+        run: poetry install
+        working-directory: ./python-client
+
+      - name: Package with PyInstaller
+        run: poetry run pyinstaller --onefile main.py
+        working-directory: ./python-client
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-stt-client-windows
+          path: python-client/dist/main.exe
