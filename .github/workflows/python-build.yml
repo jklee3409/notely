@@ -9,13 +9,13 @@ on:
       - '.github/workflows/python-build.yml'
   workflow_dispatch:
 
-defaults:
-  run:
-    shell: bash # bash 셸 사용 통일
-
 jobs:
   build-windows:
     runs-on: windows-latest
+
+    defaults:
+      run:
+        shell: bash
 
     steps:
       - name: Checkout repository
