@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - 'python-client/**'
-      - 'python-build.yml'
+      - '.github/workflows/python-build.yml'
   workflow_dispatch:
 
 defaults:
