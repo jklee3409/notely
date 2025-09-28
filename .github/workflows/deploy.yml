@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'spring-server/**'
 
 jobs:
   build-and-deploy:
@@ -20,7 +22,9 @@ jobs:
           distribution: 'temurin'
 
       - name: Build with Gradle
-        run: ./gradlew bootJar
+        run: |
+          cd ./spring-server
+          ./gradlew bootJar
 
       - name: Login to Docker Hub
         uses: docker/login-action@v3
@@ -31,7 +35,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ./spring-server
           push: true
           tags: jklee3409/lecture-notes:latest
 
@@ -44,9 +48,7 @@ jobs:
           script: |
             docker stop lecture-notes-server || true
             docker rm lecture-notes-server || true
-
             docker pull jklee3409/lecture-notes:latest
-
             docker run -d -p 80:8080 --name lecture-notes-server --restart always \
             -e SPRING_PROFILES_ACTIVE=prod \
             -e DB_URL="${{ secrets.PROD_DB_URL }}" \

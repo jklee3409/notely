@@ -4,3 +4,6 @@ vm-lecture-notes_key.pem
 # GitHub Actions key files
 github-actions-key
 github-actions-key.pub
+
+.idea/
+*.iml
