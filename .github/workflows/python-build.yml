@@ -27,7 +27,7 @@ jobs:
           cache: 'pip'
 
       - name: Install Poetry
-        run: pip install poetry==1.8.2
+        run: pip install poetry==2.2.1
 
       - name: Install deps
         run: poetry install
