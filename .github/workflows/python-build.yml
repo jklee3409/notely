@@ -11,7 +11,7 @@ on:
 
 defaults:
   run:
-    shell: bash
+    shell: bash # bash 셸 사용 통일
 
 jobs:
   build-windows:
