@@ -53,8 +53,8 @@ jobs:
             docker rm lecture-notes-server || true
             docker pull jklee3409/lecture-notes:latest
             docker run -d -p 80:8080 --name lecture-notes-server --restart always \
-            -e SPRING_PROFILES_ACTIVE=prod \
-            -e DB_URL="${{ secrets.PROD_DB_URL }}" \
-            -e DB_USERNAME="${{ secrets.PROD_DB_USERNAME }}" \
-            -e DB_PASSWORD="${{ secrets.PROD_DB_PASSWORD }}" \
-            jklee3409/lecture-notes:latest
+              -e SPRING_PROFILES_ACTIVE=prod \
+              -e SPRING_DATASOURCE_URL="${{ secrets.PROD_DB_URL }}" \
+              -e SPRING_DATASOURCE_USERNAME="${{ secrets.PROD_DB_USERNAME }}" \
+              -e SPRING_DATASOURCE_PASSWORD="${{ secrets.PROD_DB_PASSWORD }}" \
+              jklee3409/lecture-notes:latest
